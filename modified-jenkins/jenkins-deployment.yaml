@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,12 +18,18 @@ spec:
       volumes:
       - name: dind-storage
         emptyDir: {}
+      - name: jenkins-data
+        persistentVolumeClaim:
+          claimName: jenkins-pvc
       containers:
       - name: jenkins
         image: docker.io/pluckhuang/modified-jenkins:latest
         ports:
         - containerPort: 8080
         - containerPort: 50000
+        volumeMounts:
+        - name: jenkins-data
+          mountPath: /var/jenkins_home
         env:
         - name: DOCKER_HOST
           value: tcp://localhost:2375
@@ -35,3 +42,40 @@ spec:
           mountPath: /var/lib/docker
       imagePullSecrets:
       - name: dockerhub-secret
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
