@@ -21,7 +21,7 @@ spec:
       - name: jenkins
         image: docker.io/pluckhuang/modified-jenkins:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
         - containerPort: 50000
         env:
         - name: DOCKER_HOST
